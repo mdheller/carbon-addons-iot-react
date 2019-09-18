@@ -1,8 +1,6 @@
 import React from 'react';
-/* eslint-disable */
 import { mount } from 'enzyme';
 import AAT from '@ibma/aat';
-/* eslint-enable */
 
 import HTMLWrap from '../../a11y/a11y-test-helper';
 

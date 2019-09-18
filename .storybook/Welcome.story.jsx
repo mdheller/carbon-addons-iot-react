@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 const bodyShort02 = {
   fontSize: '1rem',
@@ -9,7 +8,11 @@ const bodyShort02 = {
   marginBottom: '1rem',
 };
 
-storiesOf('Getting Started|Welcome', module).add('About Storybook', () => (
+export default {
+  title: 'Getting Started|Welcome',
+};
+
+export const AboutStorybook = () => (
   <div style={{ margin: '0 auto', maxWidth: '600px' }}>
     <img
       style={{ width: '50%', margin: '0 25% 2rem' }}
@@ -34,4 +37,8 @@ storiesOf('Getting Started|Welcome', module).add('About Storybook', () => (
       <a href="https://ibm.biz/iot-design-site">Watson IoT Design Site</a>
     </p>
   </div>
-));
+);
+
+AboutStorybook.story = {
+  name: 'About Storybook',
+};

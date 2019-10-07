@@ -1,10 +1,20 @@
 const path = require('path');
+const webpack = require('webpack');
 
 // Export a function. Accept the base config as the only param.
 module.exports = async ({ config, mode }) => {
   // `mode` has a value of 'DEVELOPMENT' or 'PRODUCTION'
   // You can change the configuration based on that.
   // 'PRODUCTION' is used when building the static version of storybook.
+
+  config.devtool = mode === 'DEVELOPMENT' ? '#cheap-module-eval-source-map' : 'source-map';
+
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    })
+  );
+  config.plugins.push(new webpack.IgnorePlugin(/\.\/locale$/));
 
   config.module.rules.push({
     test: /\.(js|jsx)$/,
@@ -13,7 +23,7 @@ module.exports = async ({ config, mode }) => {
   });
 
   config.module.rules.push({
-    test: /\.s?css$/,
+    test: /\.scss$/,
     exclude: [/coverage/],
     use: [
       { loader: 'style-loader' },
